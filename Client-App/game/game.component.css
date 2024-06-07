@@ -1,0 +1,407 @@
+.addedit-game {
+margin-top: 5%;
+}
+
+.comp-toggle-img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  padding: 0.5em;
+}
+
+.comp-inactive {
+    filter:grayscale(80%);
+}
+
+  .comp-inactive:hover {
+      cursor:not-allowed;
+  }
+
+mat-button-toggle-group {
+  margin: 3%;
+}
+
+.name {
+  margin-left: 0.5em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.btn-done {
+  background-color: forestgreen;
+  color: white;
+  margin: 3%;
+}
+
+mat-toolbar {
+  background-color: #393539;
+  color: aliceblue;
+  height: 70px;
+  font-size: 1.5em;
+}
+
+.hint {
+margin-top: 3em;
+margin-bottom: 3em;
+}
+
+mat-card-content {
+    text-align:center;
+}
+
+mat-form-field {
+  margin-top: 3%;
+  margin-bottom: 3%;
+  text-align: center;
+  font-size: 20px;
+}
+
+.game-edit {
+  background-color: #503063;
+  color: aliceblue;
+  transform: scale(0.5);
+  float: right;
+}
+
+.game-pic {
+  height: inherit;
+  width: fit-content;
+  margin-left: -0.7em;
+}
+
+.toolbar-icon {
+  transform: scale(0.7);
+  background-color: #525252;
+  color: aliceblue;
+}
+
+.delete-icon {
+  transform: scale(0.7);
+  background-color: #525252;
+  color: #d02c2c;
+}
+
+.addedit-pic {
+  height: 100px;
+  margin-bottom: 1em;
+  box-shadow: 0px 14px 17px -2px rgba(0,0,0,0.21);
+  border: solid;
+  border-width: 0.1em;
+  border-color: #adb9be;
+}
+
+  .addedit-pic:hover {
+      cursor:pointer;
+      border:solid;
+      border-width: 0.1em;
+      border-color:#6ac6ee;
+        
+  }
+
+.toolbar-heading {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.game-bar {
+  height: 5em;
+  background-color: #6744a8;
+  color: aliceblue;
+  height: 70px;
+  width: 100%;
+  font-size: 1.25em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: aliceblue;
+}
+
+.control {
+  height: 5em;
+  background-color: #353535;
+  padding: 1em;
+  border-right: solid;
+  border-left: solid;
+  border-color: #808080;
+  border-width: 0.1em;
+  display:flex;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color:aliceblue;
+  width:100%;
+  filter: drop-shadow(0px 13px 10px rgba(0, 0, 0, 0.25));
+}
+
+.progress {
+  transform: scale(2);
+  color: #3dcf44;
+}
+
+.find {
+  margin-top: -0.1em;
+  margin-bottom: -1.2em;
+}
+
+.standings {
+  max-height: 30em;
+  width:100%;
+  margin-bottom: 2em;
+  overflow: auto;
+  filter: drop-shadow(0px 13px 10px rgba(0, 0, 0, 0.25));
+}
+
+.standings-pic {
+  height: 2.5em;
+  width: 2.5em;
+  border: solid;
+  border-radius: 50%;
+  border-color: #808080;
+  border-width: 0.1em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.standings-pic-eliminated {
+  height: 2.5em;
+  width: 2.5em;
+  border: solid;
+  border-radius: 50%;
+  border-color: #808080;
+  border-width: 0.1em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  filter: grayscale(0.8);
+}
+
+  .standings-pic:hover {
+      cursor:pointer;
+  }
+
+.standings-pic-eliminated:hover {
+    cursor: pointer;
+}
+
+.standings-pic-borderless {
+  height: 2.5em;
+  width: 2.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.fab-controls {
+  text-align: center;
+  border-right: solid;
+  border-left: solid;
+  border-color: #808080;
+  border-width: 0.1em;
+}
+
+.lives {
+  margin-top: 0.5em;
+  text-align: center;
+  transform:scale(0.7);
+}
+
+.boost-toggle {
+  background-color: #49c5b6;
+}
+
+.boost-icon {
+  transform: scale(0.6);
+  margin-left:2em;
+}
+
+.standard-control-icon {
+  transform: scale(0.7);
+  color:aliceblue;
+  background-color:#525252;
+}
+
+.token-icon {
+    transform:scale(0.7);
+}
+
+.control-pic {
+  height: 2em;
+  width: 2em;
+  margin-right: 1em;
+  margin-top: 1em;
+  border: solid;
+  border-radius: 50%;
+  border-color: #808080;
+  border-width: 0.1em;
+  vertical-align: central;
+  filter: drop-shadow(0px 7px 7px #00000058);
+}
+
+.control-pic-elim {
+  height: 2em;
+  width: 2em;
+  margin-right: 1em;
+  margin-top: 1em;
+  border: solid;
+  border-radius: 50%;
+  border-color: #808080;
+  border-width: 0.1em;
+  vertical-align: central;
+  filter: drop-shadow(0px 7px 7px #00000058);
+  filter: grayscale(0.8);
+}
+
+  .control-pic:hover {
+    cursor: pointer;
+  }
+
+.control-pic-elim:hover {
+  cursor: pointer;
+}
+
+.elim-txt {
+ font-weight:100;
+}
+
+.fixture {
+  background-color: #353535;
+  color: aliceblue;
+  text-align: center;
+}
+
+.pickless {
+  height: 2.5em;
+  width: 2.5em;
+  border: solid;
+  border-radius: 50%;
+  border-color: #808080;
+  border-width: 0.1em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.picked-team {
+  height: 2em;
+  width: 2em;
+  margin-right: 0.5em;
+  filter: drop-shadow(0px 24px 10px rgba(0, 0, 0, 0.38));
+}
+
+.fixture-container {
+background-color: aliceblue;
+}
+
+.picked-team:hover {
+  cursor: pointer;
+}
+
+.white {
+    color:aliceblue;
+}
+
+/deep/ .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: #3ed053;
+}
+
+/deep/ .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: #078653;
+}
+
+::ng-deep .ant-popover {
+  max-width: 250px; /* Set your desired maximum width */
+}
+
+.help {
+  transform: scale(0.5);
+  background-color: #dedede;
+  margin-top: -0.5em;
+  margin-bottom: 0.5em;
+}
+
+.half-scale {
+transform:scale(0.5);
+}
+
+.boostPlayed {
+  font-size: 1.5em;
+  text-align: center;
+  color:#525252;
+}
+
+.status {
+  color: #61a5de;
+}
+
+.hit {
+color:#c35656;
+}
+
+.hit-disabled {
+  opacity: 70%;
+  filter: grayscale(20%);
+}
+
+.deadline-txt {
+  margin-top: -1em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.btn-settings {
+  float: right;
+  background-color: #380f60;
+  color: aliceblue;
+  transform: scale(0.6);
+  margin-top: 1em;
+}
+
+/*mobile*/
+@media only screen and (max-width: 450px) {
+  th {
+    font-size: 8.5px;
+    margin: auto;
+  }
+
+  td {
+    font-size: 8.5px;
+    margin:auto;
+  }
+
+  .mobile-result {
+      transform:scale(0.4);
+  }
+
+  .name {
+      font-size:14px;
+  }
+
+  .deadline-txt {
+      font-size:10px;
+      margin-right:3em;
+      margin-left:1em;
+  }
+
+  .picked-team {
+    height: 1.5em;
+    width: 1.5em;
+    margin-right: 1em;
+    margin-left: 1em;
+  }
+
+  .standard-control-icon {
+    transform: scale(0.5);
+    margin-right:0.5em;
+  }
+
+  .lives {
+      transform:scale(0.5);
+      /*margin-left:0.5em;*/
+      margin-left:auto;
+      margin-right:auto;
+      vertical-align:central;
+  }
+
+  .deadline-title {
+    font-size: 10px;
+    margin-left: 1em;
+  }
+}

@@ -1,0 +1,102 @@
+<nz-tabset [nzCentered]="true">
+  <!-- edit -->
+  <nz-tab nzTitle="Edit">
+    <p *ngIf="game.legacy" class="white" style="text-align:center;">Edit this game from the admin controller</p>
+    <div *ngIf="!game.legacy">
+      <img [src]="currentPic" class="game-pic center top-margin">
+      <input type="file" #file accept=".jpg,.jpeg,.png" (change)="picSelect($event)" />
+      <button mat-stroked-button class="center upload top-margin" (click)="file.click()">
+        Upload
+      </button>
+      <br />
+      <form [formGroup]="form">
+        <mat-form-field class="center input">
+          <mat-label class="grey">Name:</mat-label>
+          <input matInput name="name" class="white" formControlName="_name" [(ngModel)]="game.name" required />
+        </mat-form-field>
+        <h3 class="white" style="text-align:center;">
+          Game Code: {{game.code}}
+          <span>
+            <button type="button" mat-icon-button style="color:#0094ff;" (click)="code()" [cdkCopyToClipboard]="game.code">
+              <mat-icon>content_copy</mat-icon>
+            </button>
+          </span>
+        </h3>
+        <h3 class="white" style="text-align:center;">
+          Join Deadline
+          <span>
+            <button type="button" mat-mini-fab [ngClass]="{'yes-btn': game.deadline, 'no-btn': !game.deadline}" (click)="game.deadline = !game.deadline;">
+              <mat-icon>{{deadlineIcon()}}</mat-icon>
+            </button>
+          </span>
+        </h3>
+        <div *ngIf="game.deadline">
+          <p class="txt-center white">
+            Players must join this game by... 
+          </p>
+          <mat-form-field class="center white">
+            <mat-label class="grey">Set new Deadline:</mat-label>
+            <input class="input" matInput [matDatepicker]="picker" [min]="today" formControlName="_dldate" [(ngModel)]="game.deadlineDate">
+            <mat-hint class="white">DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle class="white" style="float:right" matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <mat-divider class="divder"></mat-divider>
+        <button mat-stroked-button class="center done top-margin" (click)="done()" [disabled]="game.name === ''">
+          Done
+        </button>
+      </form>
+    </div>
+
+  </nz-tab>
+  <!-- players -->
+  <nz-tab nzTitle="Players">
+    <br />
+    <table style="width: 100%; ">
+      <tbody class="table-body">
+        <tr>
+          <td>Name</td>
+          <td>Active</td>
+          <td>Admin</td>
+        </tr>
+        <br />
+        <tr *ngFor="let player of players" class="players">
+          <ng-container *ngIf="!adminCreator(player)">
+            <td style="">{{player.name}}</td>
+            <td>
+              <button mat-icon-button [ngClass]="{'yes-icon': player.active, 'no-icon': !player.active}" nz-popconfirm nzPopconfirmTitle="{{popTitle(player, true)}}" nzPopconfirmPlacement="top" (nzOnConfirm)="popConfirm(player, true)">
+                <mat-icon>{{activeAdminIcon(player, true)}}</mat-icon>
+              </button>
+            </td>
+            <td>
+              <button mat-icon-button [ngClass]="{'yes-icon': player.admin, 'no-icon': !player.admin}" nz-popconfirm nzPopconfirmTitle="{{popTitle(player, false)}}" nzPopconfirmPlacement="top" (nzOnConfirm)="popConfirm(player, false)" [disabled]="!player.active">
+                <mat-icon>{{activeAdminIcon(player, false)}}</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </nz-tab>
+  <nz-tab nzTitle="End Game" disabled>
+    <p *ngIf="game.legacy" class="white" style="text-align:center;">End this game from the admin controller</p>
+    <div *ngIf="!game.legacy">
+      <nz-tabset [nzCentered]="true">
+        <nz-tab *ngFor="let end of endOptions" nzTitle="{{end.action}}">
+          <h1>
+            {{end.action}}
+          </h1>
+          <mat-divider class="underline"></mat-divider>
+          <p class="info">{{end.desc}}</p>
+          <mat-icon color="warn" class="material-symbols-outlined warning-icon">warning</mat-icon>
+          <p class="info">
+            These changes cannot be undone. Do you still wish to proceed?
+          </p>
+          <button mat-stroked-button class="center done top-margin" (click)="endGame(end.reset)" [disabled]="!end.reset && game.legacy">Yes</button>
+        </nz-tab>
+      </nz-tabset>
+    </div>
+    
+  </nz-tab>
+</nz-tabset>
