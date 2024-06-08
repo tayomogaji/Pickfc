@@ -7,7 +7,7 @@ namespace Pickfc.DAL.Factories
 {
     public class PickfcDbFactory : Disposable, IDBFactory<PickfcContext>
     {
-        private readonly string[] connect = {"Dell", "Azure"};
+        private readonly string[] connect = {"Local", "Azure"};
         private readonly IConfiguration configuration;
         public PickfcContext dbContext;
 
@@ -18,7 +18,7 @@ namespace Pickfc.DAL.Factories
 
         public PickfcContext Init() 
         {
-            return dbContext ?? (dbContext = new PickfcContext(configuration.GetConnectionString(connect[0])));
+            return dbContext ?? (dbContext = new PickfcContext(configuration.GetConnectionString(connect[1])));
         }
 
         protected override void DisposeCore()
