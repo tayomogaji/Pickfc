@@ -89,7 +89,7 @@ function countdownConfigFactory(): CountdownConfig {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ["pickfc.com"],
+        allowedDomains: ["localhost:7157", "localhost:7295", "localhost:4200", "pickfc.com", "pickfc.azurewebsites.net"],
         disallowedRoutes: []
       }
     }),
