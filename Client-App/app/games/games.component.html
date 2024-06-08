@@ -1,0 +1,66 @@
+<loading *ngIf="loading"></loading>
+<div *ngIf="!loading">
+  <br />
+  <div class="row justify-content-center" @fade>
+    <div *ngFor="let game of games" class="col-md-3 col-sm-12 games">
+      <!--<div *ngIf="game.comp.active">-->
+        <mat-toolbar class="toolbar">
+          <img [src]="pic(game.pic, 1)" class="pic"><span class="name">{{game.name}}</span>
+        </mat-toolbar>
+        <mat-card>
+          <!--game content -->
+          <div class="row">
+            <div class="col-7">
+              <img [src]="pic(game.currentPlayer.pick.team.pic, 2)" [ngClass]="{'pick-pic': game.currentPlayer.pickID === 0, 'pick-pic-borderless': game.currentPlayer.pickID !== 0}">
+              <span *ngIf="game.currentPlayer.pick.id === 0" style="margin-left:1em;">None</span>
+              <span class="name">{{game.currentPlayer.pick.team.name}}</span>
+            </div>
+            <div class="col-5">
+              <h1 style="text-align:right; color:#2b2b2b;">{{game.currentPlayer.pos}}<span style="font-size:12px;">{{nth(game.currentPlayer.pos)}}</span></h1>
+            </div>
+          </div>
+          <div class="row" style="font-size:12px;">
+            <div class="col-4" style=""><u>pts</u></div>
+            <div class="col-4" style="text-align:center"><u>pick time</u></div>
+            <div class="col-4" style="text-align:right"><u>streak</u></div>
+          </div>
+          <div class="row">
+            <div class="col-4"><span class="stat">{{game.currentPlayer.pts}}</span></div>
+            <div class="col-4" style="text-align:center"><span class="stat">{{pickTime(game.currentPlayer.pickTime)}}</span></div>
+            <div class="col-4" style="text-align:right"><span class="stat">{{game.currentPlayer.streak}}</span></div>
+          </div>
+          <!-- [ngClass]="{'life': game.currentPlayer.hitByID === 0, 'hit': game.currentPlayer.hitByID > 0}" -->
+          <div style="margin-top:0.5em;">
+            <div class="status">
+              <span *ngIf="game.currentPlayer.life > 0">
+                <mat-icon *ngFor="let life of lifeArr; index as i" class="status-color" [ngClass]="{'hit': game.currentPlayer.hitByID > 0}">
+                  {{lifeIcon(game.currentPlayer.life, i)}}
+                </mat-icon>
+              </span>
+              <span *ngIf="game.currentPlayer.life <= 0" class="material-symbols-outlined status-color">
+                skull
+              </span>
+            </div>
+          </div>
+          <button mat-raised-button class="col-12 play" (click)="play(game.id)" [disabled]="open(game) || !game.currentPlayer.active">Play</button>
+          <mat-divider></mat-divider>
+          <!--footer-->
+          <mat-card-footer class="footer">
+            <span class="creator">By {{game.creator.fullName}}</span>
+            <button *ngIf="!game.currentPlayer.admin && !game.public" matTooltip="Leave Game" mat-mini-fab class="btn-icon" nz-popconfirm nzPopconfirmTitle="{{leaveTitle}}" nzPopconfirmPlacement="top" (nzOnConfirm)="leave(game.currentPlayer.id, game.name)" [disabled]="!game.currentPlayer.active">
+              <mat-icon style="color:red;">close</mat-icon>
+            </button>
+            <button *ngIf="game.currentPlayer.admin && !game.public" (click)="copy(game.code)" matTooltip="Game Code" mat-mini-fab class="btn-icon" [cdkCopyToClipboard]="game.code">
+              <mat-icon>lock</mat-icon>
+            </button>
+            <button *ngIf="game.legacy" mat-mini-fab class="btn-icon" matTooltip="Public">
+              <mat-icon style="color:#ffd800;">star</mat-icon>
+            </button>
+          </mat-card-footer>
+        </mat-card>
+      <!--</div>-->
+    </div>
+  </div>
+</div>
+
+<!--</div>-->

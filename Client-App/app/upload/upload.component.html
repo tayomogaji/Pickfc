@@ -1,0 +1,18 @@
+<div class="row upload-dialog juatify-content-center">
+  <div class="dropzone" (dragover)="drag($event)" (drop)="drop($event)">
+    <br />
+    <h2 class="name"><strong>{{data.name}}</strong></h2>
+    <mat-divider></mat-divider>
+    <img class="pic col-md-12 col-sm-12" [src]="data.pic" />
+    <br />
+    <button class="col-md-5 btn-upload" mat-raised-button color="primary" (click)="file.click()">Upload image</button>
+    <br />
+    <p class="drop-here">...or drag and drop here.</p>
+    <input type="file" #file accept=".jpg,.jpeg,.png,.gif" (change)="selectedFile($event)" />
+    <br />
+    <button mat-fab class="btn-back" (click)="close()"><mat-icon>close</mat-icon></button>
+    <button mat-fab class="btn-done" (click)="upload()" [disabled]="!uploaded"><mat-icon>done</mat-icon></button>
+    <!--[mat-dialog-close]="data.user.pic"-->
+  </div>
+</div>
+

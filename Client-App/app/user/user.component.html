@@ -1,0 +1,77 @@
+<h1>{{accountTitle()}} Account <span>
+  <button type="button" mat-icon-button class="close" (click)="close()"><mat-icon>close</mat-icon></button>
+  <button *ngIf="!viewDelete && !data.user.fullAdmin" type="button" color="warn" mat-icon-button class="close" matTooltip="Delete account" matTooltipPosition="before" (click)="deletePrompt()"><mat-icon>delete</mat-icon></button>
+    </span>
+  </h1>
+<mat-divider class="top-margin"></mat-divider>
+
+<div *ngIf="!viewDelete">
+  <form [formGroup]="form">
+    <div class="row justify-content-center top-margin">
+        <mat-form-field class="col-6">
+          <mat-label>First Name</mat-label>
+          <input matInput type="text" name="firstname" formControlName="_firstname" [(ngModel)]="data.user.firstName" required [disabled]="true" />
+        </mat-form-field>
+        <mat-form-field class="col-6">
+          <mat-label>Last Name</mat-label>
+          <input matInput type="text" name="lastname" formControlName="_lastname" [(ngModel)]="data.user.lastName" required />
+        </mat-form-field>
+      </div>
+
+    <div class="row justify-content-center top-margin">
+      <p class="col-md-4 col-sm-12" style="color:#808080; margin-top:0.7em;"><i>{{data.user.email}}</i></p>
+      <div class="col-md-4 col-sm-6" style="text-align:center;">
+        <button type="button" (click)="data.user.notify = !data.user.notify" mat-mini-fab class="dont-notify" [ngClass]="{'notify' : data.user.notify, 'dont-notify' : !data.user.notify}">
+          <mat-icon>mail</mat-icon>
+        </button>
+        <span style="color:#173ce8" nz-popover nzPopoverTitle="{{notify(data.user.notify)}}" [nzPopoverContent]="notifyContent" nzPopoverPlacement="top">
+          <u><i>{{notify(data.user.notify)}}</i></u>
+        </span>
+
+        <ng-template #notifyContent>
+          ...via email of new content and when round deadlines approach.
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="row justify-content-center top-margin">
+      <mat-divider></mat-divider>
+      <mat-hint class="top-margin" style="text-align:center;">{{pwTxtInfo()}}</mat-hint>
+    </div>
+
+    <div class="row justify-content-center top-margin">
+      <br />
+      <mat-form-field class="col-4">
+        <mat-label>Current Password</mat-label>
+        <input matInput type="password" name="currentPw" formControlName="_currentPw" (keydown)="currentPw($event)" />
+      </mat-form-field>
+      <mat-form-field class="col-4">
+        <mat-label>New Password</mat-label>
+        <input matInput type="password" name="newPw" #newPw minlength="8" formControlName="_newPw" />
+        <mat-hint [hidden]="newPw.value.length >= 8" align="end">{{newPw.value.length}}/8</mat-hint>
+        <mat-error *ngIf="form.hasError('pattern', '_newPw')">Needs at least one upper and lowercase letter and at least one number</mat-error>
+        <mat-error *ngIf="form.hasError('required', '_newPw')">Enter a password</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-4">
+        <mat-label>Confirm Password</mat-label>
+        <input matInput type="password" name="confirmPw" #confirmPw formControlName="_confirmPw" [(ngModel)]="confirmedPw" />
+        <mat-error *ngIf="form.hasError('noMatch', '_confirmPw') && confirmPw.value.length > 0">Passwords don't match</mat-error>
+      </mat-form-field>
+    </div>
+    <mat-divider class="top-margin"></mat-divider>
+    <button type="button" mat-stroked-button class="center top-margin done" [mat-dialog-close]="pic" [disabled]="form.invalid" (click)="done()">Done</button>
+  </form>
+</div>
+
+<div *ngIf="viewDelete">
+  <div class="delete">
+    <mat-icon color="warn" class="material-symbols-outlined warning-icon">warning</mat-icon>
+    <h3><strong>Are you sure you want to delete your account?</strong></h3>
+    <h4>All current games and progress made will be lost. These changes cannot be undone!</h4>
+    <mat-divider></mat-divider>
+    <div class="row justify-content-center" style="margin-top:1em;">
+      <button mat-flat-button style="background-color:#e8eaea;" class="col-md-4 btn-margin" (click)="close()">No</button>
+      <button mat-flat-button color="warn" class="col-md-4 btn-margin" (click)="delete();" [disabled]="data.user.fullAdmin">Yes</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<header>
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow navbar-light nav-color">
+    <div class="container">
+      <a class="navbar-brand" [routerLink]="['/']">
+        <img src="/assets/brand/pickfc-full.png" class="logo" alt="Pick.fc" />
+      </a>
+      <button mat-button-icon class="navbar-toggler btn-nav" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-label="Toggle navigation" [attr.aria-expanded]="isExpanded" (click)="toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end" [ngClass]="{ show: isExpanded }">
+        <ul *ngIf="!isUserAuthenticated()" class="navbar-nav flex-grow">
+          <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
+            <button mat-button class="btn-nav" [routerLink]="['']">Login</button>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
+            <button mat-button class="btn-nav" [routerLink]="['/sign-up']">Sign up</button>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
+            <button mat-button class="btn-nav" (click)="rules()">Rules</button>
+          </li>
+        </ul>
+        <ul *ngIf="isUserAuthenticated()" class="navbar-nav flex-grow">
+          <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
+            <button mat-button class="btn-nav" [matMenuTriggerFor]="newGame"><mat-icon class="nav-icon">add_circle</mat-icon><span> New Game</span></button>
+            <mat-menu #newGame="matMenu">
+              <button mat-menu-item [routerLink]="['join']"><mat-icon class="nav-icon">person_add</mat-icon><span> Join</span></button>
+              <button mat-menu-item [routerLink]="['create']" [disabled]="!user.canAdd"><mat-icon class="nav-icon">library_add</mat-icon><span> Create</span></button>
+            </mat-menu>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
+            <button mat-button class="btn-nav" [routerLink]="['my-games']"><mat-icon class="nav-icon">sports_esports</mat-icon><span> My Games</span></button>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <button class="btn-nav" mat-button (click)="icons()"><mat-icon class="nav-icon">star</mat-icon><span> Icons</span></button>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <button class="btn-nav" mat-button (click)="rules()"><mat-icon class="nav-icon">menu_book</mat-icon><span> Rules</span></button>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <!-- vertical divider -->
+            <button mat-button class="btn-nav" [matMenuTriggerFor]="currentUser"><mat-icon class="nav-icon">person</mat-icon><span> Account</span></button>
+            <mat-menu #currentUser="matMenu">
+              <button mat-menu-item (click)="account()"> <mat-icon class="nav-icon">settings</mat-icon><span> Settings</span></button>
+              <button *ngIf="user.admin" mat-menu-item [routerLink]="['admin']"> <mat-icon class="nav-icon">admin_panel_settings</mat-icon><span> Admin</span></button>
+              <button mat-menu-item (click)="logout()"><mat-icon class="nav-icon">logout</mat-icon><span> Logout</span></button>
+            </mat-menu>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

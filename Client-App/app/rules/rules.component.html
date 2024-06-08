@@ -1,0 +1,45 @@
+<mat-toolbar class="toolbar" style="font-size:24px;">
+  Pick Fc: Rules
+</mat-toolbar>
+<br />
+<h2>Picks</h2>
+<p>
+  For each round in a competition, you must pick the team you believe will <strong>WIN</strong> their fixture. Only teams with fixtures can be picked and each team can only be picked <strong>ONCE</strong>. Failure to make your pick before a round deadline will result in you loosing that round.
+</p>
+<mat-divider></mat-divider>
+<br />
+<h2>Points</h2>
+<p>
+  Points are awarded on a unique pick basis, meaning, in a given round, 1 point is awarded for every player still with life in the game, who <strong>DID NOT</strong> pick the same team as you. This is only valid if the team you picked <strong>WINS</strong>. Zero points are awarded for losses or draws.
+</p>
+<mat-divider></mat-divider>
+<br />
+<h2>Boost</h2>
+<p>
+  {{token(3)}}
+</p>
+<mat-divider></mat-divider>
+<br />
+<h2>Life</h2>
+<p>
+  All players begin the game with 2 life points. Additional life points are awarded after every 4th consecutive win until its maximum (3) is reached. 1 life point is deducted if your picked team <strong>LOOSES</strong> their fixture and 2 life points are deducted if your picked team fails to win while you have a hit placed on you.
+</p>
+<mat-divider></mat-divider>
+<br />
+<h2>Hit (2 Streak Chip)</h2>
+<p>
+  {{token(0)}}
+</p>
+<mat-divider></mat-divider>
+<br />
+<h2>End Game</h2>
+<p>
+  The game ends once all players are eliminated or when all rounds for a competition are complete. The player with most points at the end of the game, wins.
+</p>
+<mat-divider></mat-divider>
+<br />
+<h2>Pick Time (Tie break)</h2>
+<p>
+  Measured in <strong>DAYS</strong>, the time taken for you to make your final pick in a given round is calculated and added towards your overall pick time. Should the game end level on points, the player with the quickest pick time wins.
+</p>
+<br />

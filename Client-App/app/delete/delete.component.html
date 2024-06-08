@@ -1,0 +1,12 @@
+<div class="delete">
+  <mat-icon color="warn" class="material-symbols-outlined warning-icon">warning</mat-icon>
+  <h4>Are you sure you want to delete</h4>
+  <h3>{{data.name}}</h3>
+  <mat-checkbox *ngIf="data.type === 'comp'" color="warn" style="margin-bottom:1em;" (change)="teamsRemoval($event.checked)">Remove teams?</mat-checkbox>
+  <mat-divider></mat-divider>
+  <div class="row justify-content-center" style="margin-top:1em;">
+    <button mat-flat-button style="background-color:#e8eaea;" class="col-md-4 btn-margin" (click)="close()">No</button>
+    <button mat-flat-button color="warn" class="col-md-4 btn-margin" (click)="delete(); close();">Yes</button>
+  </div>
+</div>
+

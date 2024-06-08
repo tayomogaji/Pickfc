@@ -1,0 +1,22 @@
+.logo {
+  height: 20em;
+  margin: auto;
+  /*display: block;*/
+  display: flex;
+  justify-content:center;
+  filter: drop-shadow(0px 4px 7px #4d4c4c);
+  opacity: 90%;
+}
+
+.spinner {
+  transform: scale(0.5);
+  display: block;
+  margin: auto;
+}
+
+@media only screen and (max-width: 450px) {
+  .logo {
+    height: 10em;
+    margin-top:10em;
+  }
+}

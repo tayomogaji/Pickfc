@@ -1,0 +1,14 @@
+.btn-margin {
+margin: 0.5em;
+}
+
+.warning-icon {
+  transform: scale(2);
+  margin: 0.7em;
+}
+
+.delete {
+    width:30em;
+    height:20em;
+    text-align: center;
+}

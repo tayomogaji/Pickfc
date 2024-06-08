@@ -1,0 +1,59 @@
+<div *ngIf="!verify" class="row justify-content-center">
+  <div class="col-md-6 col-sm-12">
+    <br />
+    <mat-toolbar class="toolbar">
+      <span>Sign Up</span>
+      <span class="toolbar-spacer"></span>
+      <button *ngIf="!loading" mat-icon-button (click)="close()"><mat-icon>cancel</mat-icon></button>
+      <mat-spinner *ngIf="loading" color="accent" style="transform: scale(0.3);"></mat-spinner>
+    </mat-toolbar>
+    <mat-card class="txt-centered">
+      <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="signup()">
+          <mat-error *ngIf="exist" class="alert alert-danger">Invalid Credentials</mat-error>
+          <br />
+          <div class="row justify-content-center">
+            <mat-form-field class="col-md-5 col-sm-12">
+              <mat-label for="firstname">First Name:</mat-label>
+              <input matInput name="firstname" #firstname [(ngModel)]="user.firstName" formControlName="firstname_input" />
+              <mat-error *ngIf="form.hasError('required', 'firstname_input')">What's your first name?</mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-md-5 col-sm-12">
+              <mat-label for="lastname">Last Name:</mat-label>
+              <input matInput name="lastname" #lastname [(ngModel)]="user.lastName" formControlName="lastname_input" />
+              <mat-error *ngIf="form.hasError('required', 'lastname_input')">What's your last name?</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row justify-content-center">
+            <mat-form-field class="col-md-10 col-sm-12">
+              <mat-label>Email:</mat-label>
+              <input matInput type="email" #email name="email" [(ngModel)]="user.email" formControlName="email_input">
+              <mat-error *ngIf="form.hasError('email', 'email_input')">Enter a valid email</mat-error>
+              <mat-error *ngIf="form.hasError('required', 'email_input')">What's your email address?</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row justify-content-center">
+            <mat-form-field class="col-md-5 col-sm-12">
+              <mat-label for="password">Password</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" name="password" minlength="8" #password [(ngModel)]="user.password" formControlName="password_input" />
+              <mat-hint [hidden]="password.value.length >= 8" align="end">{{password.value.length}}/8</mat-hint>
+              <mat-error *ngIf="form.hasError('pattern', 'password_input')">Needs at least one upper and lowercase letter and at least one number</mat-error>
+              <mat-error *ngIf="form.hasError('required', 'password_input')">Enter a password</mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-md-5 col-sm-12">
+              <mat-label for="confrim">Confirm password</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" name="confirm" #confirm formControlName="confirm_input" />
+              <mat-error *ngIf="form.hasError('noMatch', 'confirm_input') && confirm.value.length > 0">Passwords don't match</mat-error>
+            </mat-form-field>
+          </div>
+          <br />
+          <mat-divider></mat-divider>
+          <br />
+          <button mat-stroked-button class="done" [disabled]="form.invalid">Sign up</button>
+        </form>
+        <!--<social [action]="'Sign up with'"></social>-->
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+<verify *ngIf="verify" [title]="verifyTitle" [email]="verifyEmail" [resetPw]="false"></verify>

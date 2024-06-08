@@ -1,0 +1,84 @@
+.games {
+  animation: ease-in 5s;
+  margin: 1em;
+}
+
+.toolbar {
+  background-color: #6744a8;
+  color: aliceblue;
+  height: 50px;
+  font-size: 18px;
+}
+
+.pic {
+  height: inherit;
+  width: fit-content;
+  margin-left: -0.9em;
+}
+
+.name {
+  margin-left: 0.5em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.creator {
+  font-size: 9px;
+  color: #a7a7a7;
+  margin-left: 1em;
+  margin-top: 6em;
+}
+
+.btn-icon {
+  float: right;
+  background-color: #525252;
+  color: aliceblue;
+  transform: scale(0.5);
+}
+
+.footer {
+  height: 2.5em;
+  background-color: #2c2c2c;
+}
+
+.play {
+  background-color: #078653;
+  color: aliceblue;
+  margin-bottom: 1em;
+}
+
+.pick-pic {
+  height: 2.5em;
+  width: 2.5em;
+  border: solid;
+  border-radius: 50%;
+  border-color: #808080;
+  border-width: 0.1em;
+  margin-bottom: 0.5em;
+}
+
+.pick-pic-borderless {
+  height: 2.5em;
+  width: 2.5em;
+  margin-bottom: 0.5em;
+}
+
+.stat {
+  font-size:18px;
+  margin-right:0.2em;
+}
+
+.status {
+  text-align:center;
+  transform: scale(0.7);
+  width:100%;
+}
+
+.status-color {
+  color: #8ab9c2;
+}
+
+.hit {
+  color: #c35656;
+}

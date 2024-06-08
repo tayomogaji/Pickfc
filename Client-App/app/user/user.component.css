@@ -1,0 +1,83 @@
+.pic {
+  height: 8em;
+  width: 8em;
+  border: solid;
+  border-color: #808080;
+  border-width: 0.2em;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.top-margin {
+  margin-top: 1em;
+}
+
+.dont-notify {
+  background-color: #525252;
+  color: #ffffffc9;
+  transform: scale(0.6);
+}
+
+.notify {
+  background-color: #525252;
+  color: #ffd800;
+  transform: scale(0.6);
+}
+
+.change-pw {
+  color: #173ce8;
+  margin-top: 0.7em;
+  text-align: right;
+}
+
+.no-change-pw {
+  color: #5161a1b4;
+  margin-top: 0.7em;
+  text-align: right;
+}
+
+.done {
+  color: #57cb72;
+  border-color: #57cb72;
+}
+
+.upload {
+  color: #98cee6;
+  border-color: #98cee6;
+}
+
+.close {
+  float: right;
+  margin-top: -0.5em;
+  transform: scale(0.6)
+}
+
+.btn-center {
+  display: flex;
+  justify-content: center;
+}
+
+.send-email {
+  transform: scale(0.6);
+  background-color: #67bf5a;
+  color: aliceblue;
+}
+
+.btn-margin {
+  margin: 0.5em;
+}
+
+.warning-icon {
+  transform: scale(2);
+  margin: 0.7em;
+}
+
+.delete {
+  width: 30em;
+  height: 20em;
+  text-align: center;
+}

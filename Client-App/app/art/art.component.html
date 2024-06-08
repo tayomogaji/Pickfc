@@ -1,0 +1,99 @@
+<mat-toolbar class="toolbar">
+  <span>Icons</span>
+  <span class="toolbar-spacer"></span>
+  <span>
+    <button *ngIf="data.user.fullAdmin" mat-icon-button matTooltip="Edit" matTooltipPosition="above" (click)="addeditView(art, false)" [disabled]="art.id === 0">
+      <mat-icon>edit_note</mat-icon>
+    </button>
+    <button *ngIf="data.user.fullAdmin" mat-icon-button matTooltip="Add new" matTooltipPosition="above" (click)="addeditView(art, true)">
+      <mat-icon>add_circle</mat-icon>
+    </button>
+    <button mat-icon-button (click)="close()">
+      <mat-icon>cancel</mat-icon>
+    </button>
+  </span>
+</mat-toolbar>
+<br />
+<div *ngIf="viewAddedit" class="justify-content-center">
+  <div class="row">
+    <div class="col-12" style="text-align:center;">
+      <p class="index" *ngIf="art.index > 0">#{{art.index}}</p>
+      <p class="firstname">{{upper(art.firstName)}}</p>
+      <p class="lastname">{{upper(art.lastName)}}</p>
+    </div>
+  </div>
+  <!-- (change)="picSelect($event)" -->
+  <img [src]="currentPic" class="pic-pick center">
+  <input type="file" #file accept=".jpg,.jpeg,.png" (change)="picSelect($event)"/>
+  <br />
+  <button type="button" mat-stroked-button class="center upload top-margin" (click)="file.click()">
+    Upload
+  </button>
+  <br />
+  <mat-divider></mat-divider>
+  <br />
+  <form [formGroup]="form" (ngSubmit)="addedit()">
+    <div class="row justify-content-center">
+        <mat-form-field class="col-12 full-width">
+          <mat-label>FirstName</mat-label>
+          <input matInput type="text" name="firstname" formControlName="firstname" [(ngModel)]="art.firstName" />
+        </mat-form-field>
+        <mat-form-field class="col-12 full-width">
+          <mat-label>LastName</mat-label>
+          <input matInput type="text" name="lastname" formControlName="lastname" [(ngModel)]="art.lastName" required />
+        </mat-form-field>
+    </div>
+    <br />
+    <div class="row justify-content-center">
+      <div class="col-4">
+        <button type="submit" mat-stroked-button class="center top-margin done" [disabled]="form.invalid">Done</button>
+      </div>
+      <div class="col-4">
+        <button type="button" mat-stroked-button class="center top-margin" (click)="listView()">Back</button>
+      </div>
+      <div *ngIf="art.id > 0" class="col-4">
+        <button type="button" color="warn" mat-stroked-button class="center top-margin" (click)="deleteView(art)" [disabled]="art.id === data.user.art.id">Delete</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="viewList">
+  <div class="row">
+    <div class="col-12" style="text-align:center;">
+      <p class="index" *ngIf="art.index > 0">#{{art.index}}</p>
+      <p class="firstname">{{upper(art.firstName)}}</p>
+      <p class="lastname">{{upper(art.lastName)}}</p>
+    </div>
+  </div>
+  <!-- (change)="picSelect($event)" -->
+  <img [src]="pic(art.path, 0)" class="pic-pick center">
+  <br />
+  <button type="button" mat-stroked-button class="center upload top-margin" (click)="set()" [disabled]="art.id === data.user.art.id">
+    Set
+  </button>
+  <br />
+  <mat-divider></mat-divider>
+  <br />
+  <div class="row">
+    <mat-grid-list cols="5">
+      <mat-grid-tile *ngFor="let art of arts" (click)="artSelect(art)" matTooltip="{{info(art)}}" matTooltipPosition="below">
+        <img [src]="pic(art.path, 0)" class="design">
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>
+
+<div *ngIf="viewDelete">
+  <div class="delete center">
+    <mat-icon color="warn" class="material-symbols-outlined warning-icon">warning</mat-icon>
+    <h4>Are you sure you want to delete</h4>
+    <h3>{{info(art)}}</h3>
+    <mat-divider></mat-divider>
+    <div class="row justify-content-center" style="margin-top:1em;">
+      <button mat-flat-button style="background-color:#e8eaea;" class="col-md-4 btn-margin" (click)="listView()">No</button>
+      <button mat-flat-button color="warn" class="col-md-4 btn-margin" (click)="delete()">Yes</button>
+    </div>
+  </div>
+</div>
+

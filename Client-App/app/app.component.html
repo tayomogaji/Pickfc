@@ -1,0 +1,7 @@
+<body>
+  <nav-menu></nav-menu>
+  <loading *ngIf="loading"></loading>
+  <div *ngIf="!loading" class="container">
+    <router-outlet></router-outlet>
+  </div>
+</body>

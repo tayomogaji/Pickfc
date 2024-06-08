@@ -1,0 +1,35 @@
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.nav-color {
+  background-image: linear-gradient(#d9d9d9, #f5f5f5);
+}
+
+.btn-nav {
+color:#464646;
+}
+
+.nav-icon {
+transform:scale(0.7);
+}
+
+.logo {
+  height: 2.5em;
+  filter: drop-shadow(-1px 6px 3px #8c8c8c);
+}

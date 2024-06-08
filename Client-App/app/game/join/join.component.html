@@ -1,0 +1,28 @@
+<div class="row justify-content-center addedit-game">
+  <div class="col-md-6 col-sm-12">
+    <br />
+    <mat-toolbar>
+      <span>Join</span>
+      <span class="toolbar-spacer"></span>
+      <button mat-icon-button (click)="close()"><mat-icon>cancel</mat-icon></button>
+    </mat-toolbar>
+    <mat-card>
+      <mat-card-content class="card-content">
+        <form [formGroup]="form" (ngSubmit)="join()">
+          <mat-form-field class="col-md-8 col-sm-12 justify-content-center" style="text-align: center">
+            <mat-label for="code">Code:</mat-label>
+            <input matInput type="text" name="code" maxlength="6" #code [(ngModel)]="game.code" formControlName="code_input" />
+            <br />
+            <mat-error *ngIf="form.invalid">Enter a vaild code</mat-error>
+            <mat-hint [hidden]="code.value.length >= 6" align="end">{{code.value.length}}/6</mat-hint>
+          </mat-form-field>
+          <br />
+          <mat-divider></mat-divider>
+          <br />
+          <button mat-stroked-button type="submit" class="done" [disabled]="form.invalid || code.value.length < 6">Join</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+

@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+  <div class="col-md-6 col-sm-12">
+    <br />
+    <mat-toolbar class="toolbar">
+      <span>{{title}}</span>
+      <span class="toolbar-spacer"></span>
+      <button *ngIf="!loading" mat-icon-button (click)="close()"><mat-icon>cancel</mat-icon></button>
+      <mat-spinner *ngIf="loading" color="accent" style="transform: scale(0.3);"></mat-spinner>
+    </mat-toolbar>
+    <mat-card>
+      <mat-card-content class="card-content">
+        <form *ngIf="!viewPasswordReset" [formGroup]="form" (ngSubmit)="activateReset()">
+          <p>{{codeType}} code was sent to {{recipient()}}. If you cant find your code in your inbox then check your junk. Once you've got your code, enter it below to {{outcome}}.</p>
+          <mat-error *ngIf="!validCode">Invalid Code.</mat-error>
+          <mat-form-field class="col-md-8 col-sm-12 justify-content-center" style="text-align: center">
+            <mat-label for="code">Code:</mat-label>
+            <input matInput type="text" name="code" #code [(ngModel)]="auth.code" formControlName="code_inpt" />
+            <br />
+          </mat-form-field>
+          <br />
+          <p>I still cant find my code. <a class="link" (click)="codeRequest()">Please send me a new one.</a></p>
+          <br />
+          <mat-divider></mat-divider>
+          <br />
+          <button mat-stroked-button type="submit" class="done" [disabled]="form.invalid">{{submit}}</button>
+        </form>
+
+        <form *ngIf="viewPasswordReset" [formGroup]="passwordForm" (ngSubmit)="resetPassword()">
+          <br />
+          <mat-form-field class="col-md-8 col-sm-12 justify-content-center" style="text-align: center">
+            <mat-label for="newPassword">New Password:</mat-label>
+            <input matInput type="password" name="newPassword" #newPassword formControlName="new_password" minlength="8" />
+            <mat-hint [hidden]="newPassword.value.length >= 8" align="end">{{newPassword.value.length}}/8</mat-hint>
+            <mat-error *ngIf="passwordForm.hasError('pattern', 'new_password')">Needs at least one upper and lowercase letter and at least one number</mat-error>
+            <mat-error *ngIf="passwordForm.hasError('required', 'new_password')">Enter a password</mat-error>
+            <br />
+          </mat-form-field>
+          <br />
+          <br />
+          <mat-form-field class="col-md-8 col-sm-12 justify-content-center" style="text-align: center">
+            <mat-label for="confirmPassword">Confirm Password:</mat-label>
+            <input matInput type="password" name="confirmPassword" #confirmPassword formControlName="confirm_password" [(ngModel)]="user.password"/>
+            <mat-error *ngIf="passwordForm.hasError('noMatch', 'confirm_password') && confirmPassword.value.length > 0">Passwords don't match</mat-error>
+            <br />
+          </mat-form-field>
+          <mat-divider></mat-divider>
+          <br />
+          <button mat-stroked-button type="submit" class="done" [disabled]="passwordForm.invalid">{{submit}}</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+

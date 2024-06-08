@@ -1,0 +1,140 @@
+.toolbar {
+  background-color: #282828;
+  color: #f9fafb;
+  height: 60px;
+  font-size: 30px;
+  position:sticky;
+  z-index:1;
+  width:100%;
+}
+
+.btn-margin {
+  margin: 0.5em;
+}
+
+.warning-icon {
+  transform: scale(2);
+  margin: 0.7em;
+}
+
+.pic {
+  height: 8em;
+  width: 8em;
+  border: solid;
+  border-color: #63636331;
+  border-width: 0.2em;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.design {
+  height: inherit;
+  width: inherit;
+  padding: 0.2em;
+}
+
+  .design:hover {
+    cursor: pointer;
+  }
+
+.pic-pick {
+  height: 10em;
+  width: 10em;
+  border: solid;
+  border-color: #63636331;
+  border-width: 0.2em;
+}
+
+.tiles {
+  height: inherit;
+  padding: 2em;
+  overflow: auto;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.upload {
+  color: #7238bd;
+  border-color: #7238bd;
+}
+
+.done {
+  color: #57cb72;
+  border-color: #57cb72;
+}
+
+.delete {
+  width: 30em;
+  height: 20em;
+  text-align: center;
+}
+
+.set {
+  color: #81178d;
+  border-color: #81178d;
+  margin-top: 0.7em;
+  /*margin-left: 2.5em;*/
+}
+
+.edit {
+  color: #98cee6;
+  border-color: #98cee6;
+  margin-top: 0.7em;
+  /*margin-right: 2.5em;*/
+  float:right;
+}
+
+.index {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size:14px;
+  font-weight:200;
+  color:#98cee6;
+}
+
+.firstname {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  font-stretch: expanded;
+  color: #808080ac;
+  margin-top: -0.5em;
+}
+
+.lastname {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  font-stretch: extra-expanded;
+  margin-top: -0.5em;
+}
+
+@media only screen and (max-width: 450px) {
+
+  .pic-pick {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .firstname {
+    text-align:center;
+  }
+  .lastname {
+    text-align:center;
+  }
+  .index {
+    text-align: center;
+  }
+  .set {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+

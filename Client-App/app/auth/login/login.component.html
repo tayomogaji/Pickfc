@@ -1,0 +1,62 @@
+<div *ngIf="!verify" class="row justify-content-center">
+  <div class="col-md-6 col-sm-12">
+    <br />
+    <mat-toolbar class="toolbar">
+      <span>{{title}}</span>
+      <span class="toolbar-spacer"></span>
+      <button *ngIf="!pwChange && !loading" mat-icon-button [routerLink]="['/sign-up']" matTooltip="Sign up" matTooltipPosition="before"><mat-icon>add_circle</mat-icon></button>
+      <button *ngIf="pwChange && !loading" mat-icon-button (click)="close()"><mat-icon>cancel</mat-icon></button>
+      <mat-spinner *ngIf="loading" color="accent" style="transform: scale(0.3);"></mat-spinner>
+    </mat-toolbar>
+    <mat-card class="txt-centered">
+      <mat-card-content>
+        <form *ngIf="!pwChange" [formGroup]="form" (ngSubmit)="verifyAccount()">
+          <mat-error *ngIf="invalidLogin" class="alert alert-danger">Invalid Email or Password.</mat-error>
+          <br />
+          <mat-form-field class="col-md-8 col-sm-12 justify-content-center">
+            <mat-label for="email">Email:</mat-label>
+            <input matInput name="email" matNativeControl="email" #email [(ngModel)]="auth.email" formControlName="email">
+            <mat-error *ngIf="form.hasError('required', 'email')">What's your email?</mat-error>
+            <mat-error *ngIf="form.hasError('email', 'email')">Enter a valid email</mat-error>
+          </mat-form-field>
+          <br />
+          <br />
+          <mat-form-field class="col-md-8 col-sm-12 justify-content-center">
+            <mat-label for="password">Password:</mat-label>
+            <input matInput name="password" type="password" #password [(ngModel)]="auth.password" formControlName="password">
+            <mat-error *ngIf="form.hasError('required', 'password')">What's your password</mat-error>
+          </mat-form-field>
+          <br />
+          <mat-checkbox color="primary" [(ngModel)]="auth.rememberMe" formControlName="rememberMe" style="margin-right:1em;">
+            Remember Me?
+          </mat-checkbox>
+          <span> | <a class="link" (click)="forgotPw()" style="margin-left:1em;">Forgot Password?</a></span>
+          <br />
+          <br />
+          <mat-divider></mat-divider>
+          <br />
+          <button type="submit" class="done" mat-stroked-button [disabled]="form.invalid">Login</button>
+        </form>
+        <!--  matNativeControl="email" -->
+        <form *ngIf="pwChange" [formGroup]="resetRequestForm" (ngSubmit)="codeRequest()">
+          <br />
+          <p>Password reset instructions will be sent to...</p>
+          <mat-form-field class="col-md-8 col-sm-12 justify-content-center">
+            <mat-label for="email">Email:</mat-label>
+            <input matInput name="resetEmail" #resetEmail matNativeControl="email" [(ngModel)]="auth.email" formControlName="email">
+            <mat-error *ngIf="resetRequestForm.hasError('required', 'email')">What's your email?</mat-error>
+            <mat-error *ngIf="form.hasError('email', 'email')">Enter a valid email</mat-error>
+          </mat-form-field>
+          <br />
+          <br />
+          <mat-divider></mat-divider>
+          <br />
+          <button type="submit" class="done" mat-stroked-button [disabled]="resetRequestForm.invalid">Send</button>
+        </form>
+        <!--<social [action]="'Login with'"></social>-->
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+<verify *ngIf="verify" [auth]="auth" [resetPw]="resetPw" (back)="back($event)"></verify>
+
